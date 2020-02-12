@@ -29,7 +29,7 @@
 
     class ZeroButton extends React.Component {
         render() {
-            return <button>0</button>
+            return <button onClick={this.props.clickHandler}>0</button>
         }
     }
 
@@ -82,7 +82,7 @@
                 <Counter display={this.state.count}/>
                 <button onClick={this.increase} style={buttonStyle}>+
                 </button>
-                <ZeroButton onClick={this.setZero}/>
+                <ZeroButton clickHandler={this.setZero}/>
                 <button onClick={(e) => {
                     this.setState({count: this.state.count - (e.shiftKey ? 10 : 1)})
                 }} style={buttonStyle}>-
