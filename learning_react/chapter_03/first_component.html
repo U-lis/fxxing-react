@@ -10,9 +10,19 @@
 <body>
 <div id="container"></div>
 <script type="text/babel">
+    const container = document.querySelector("#container");
+
     class HelloWorld extends React.Component {
         render() {
             return <p>Hello, {this.props.target}!</p>
+        }
+    }
+
+    class Buttonify extends React.Component {
+        render() {
+            return <div>
+                <button type={this.props.type}>{this.props.children}</button>
+            </div>
         }
     }
 
@@ -20,9 +30,10 @@
         <div>
             <HelloWorld target="ulismoon"/>
             <HelloWorld target="camilla"/>
+            <Buttonify type="submit">SUBMIT</Buttonify>
         </div>,
-    document.querySelector("#container")
-    )
+        container
+    );
 </script>
 </body>
 </html>
