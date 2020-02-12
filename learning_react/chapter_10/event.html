@@ -37,8 +37,14 @@
             this.increase = this.increase.bind(this);
         }
 
-        increase() {
-            this.setState({count: this.state.count + 1})
+        increase(e) {
+            let currCount = this.state.count;
+            if (e.shiftKey) {
+                currCount += 10;
+            } else {
+                currCount += 1;
+            }
+            this.setState({count: currCount})
         }
 
         render() {
@@ -66,7 +72,7 @@
                 <button onClick={this.increase} style={buttonStyle}>+
                 </button>
                 <button onClick={(e) => {
-                    this.setState({count: this.state.count - 1})
+                    this.setState({count: this.state.count - (e.shiftKey ? 10 : 1)})
                 }} style={buttonStyle}>-
                 </button>
             </div>
