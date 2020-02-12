@@ -8,9 +8,11 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 <body>
+<h1 id="heading">Colorizer</h1>
 <div id="container"></div>
 <script type="text/babel">
     const container = document.querySelector("#container");
+    const heading = document.querySelector("#heading");
 
     const inputStyle = {
         padding: 10,
@@ -26,6 +28,12 @@
         color: "white",
         border: "2px solid #666",
     };
+
+    class ColorLabel extends React.Component {
+        render() {
+            return ReactDOM.createPortal(":"+this.props.color, heading)
+        }
+    }
 
     class Colorizer extends React.Component {
         constructor(props) {
@@ -51,7 +59,6 @@
             this._input.value = "";
         }
 
-
         render() {
             const squareStyle = {
                 width: 200,
@@ -68,6 +75,7 @@
                                ref={(elem) => this._input = elem}/>
                         <button style={buttonStyle} type="submit">go</button>
                     </form>
+                    <ColorLabel color={this.state.bgcolor}/>
                 </div>
             )
         }
