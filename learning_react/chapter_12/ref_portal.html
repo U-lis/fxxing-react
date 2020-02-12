@@ -60,16 +60,12 @@
                 backgroundColor: this.state.bgcolor,
             };
 
-            let self = this;
-
             return (
                 <div>
                     <div style={squareStyle}/>
                     <form onSubmit={this.setNewColor}>
                         <input style={inputStyle} onChange={this.getNewColor} placeholder="Give me color"
-                               ref={function (elem) {
-                                   self._input = elem;
-                               }}/>
+                               ref={(elem) => this._input = elem}/>
                         <button style={buttonStyle} type="submit">go</button>
                     </form>
                 </div>
