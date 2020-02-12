@@ -11,12 +11,20 @@
 <div id="container"></div>
 <script type="text/babel">
     const container = document.querySelector("#container");
+    const colors = ["#123123", "#9FDA33", "#093BAA", "#87DD90", "#ABBA00", "#610810"];
+
+    let circles = [];
+    // colors.forEach((color, idx) => {
+    //     circles.push(<Circle key={idx} bgcolor={color}/>)
+    // });
+    for (let i=0; i<colors.length; i++) {
+        circles.push(<Circle bgcolor={colors[i]}/>);
+    }
+    console.log(circles);
 
     function randomCircle() {
-        const colors = ["#123123", "#9FDA33", "#093BAA", "#87DD90", "#ABBA00", "#610810"];
         const ran = Math.floor(Math.random() * colors.length);
-
-        return <Circle bgcolor={colors[ran]}></Circle>
+        return <Circle bgcolor={colors[ran]}/>
     }
 
     class Circle extends React.Component {
@@ -32,7 +40,7 @@
             };
 
             return (
-                <div style={circleStyle}></div>
+                <div style={circleStyle}/>
             )
         }
     }
@@ -40,6 +48,9 @@
     ReactDOM.render(
         <div>
             {randomCircle()}
+            {randomCircle()}
+            <hr/>
+            {circles}
         </div>,
         container
     );
