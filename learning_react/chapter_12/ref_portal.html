@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Style</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+    const container = document.querySelector("#container");
+
+    const inputStyle = {
+        padding: 10,
+        fontSize: 16,
+        border: "2px solid #CCC",
+    };
+
+    const buttonStyle = {
+        padding: 10,
+        fontSize: 16,
+        margin: 10,
+        backgroundColor: "#666",
+        color: "white",
+        border: "2px solid #666",
+    };
+
+    class Colorizer extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                color: "",
+                bgcolor: "white",
+            };
+
+            this.getNewColor = this.getNewColor.bind(this);
+            this.setNewColor = this.setNewColor.bind(this);
+        }
+
+        getNewColor(e) {
+            this.setState({color: e.target.value})
+        }
+
+        setNewColor(e) {
+            e.preventDefault(); // Stop form submit
+            this.setState({bgcolor: this.state.color});
+            this._input.focus();
+            this._input.value = "";
+        }
+
+
+        render() {
+            const squareStyle = {
+                width: 200,
+                height: 200,
+                boxShadow: "0px 0px 25px 0px #333",
+                backgroundColor: this.state.bgcolor,
+            };
+
+            let self = this;
+
+            return (
+                <div>
+                    <div style={squareStyle}/>
+                    <form onSubmit={this.setNewColor}>
+                        <input style={inputStyle} onChange={this.getNewColor} placeholder="Give me color"
+                               ref={function (elem) {
+                                   self._input = elem;
+                               }}/>
+                        <button style={buttonStyle} type="submit">go</button>
+                    </form>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <div>
+            <Colorizer/>
+        </div>,
+        container
+    );
+</script>
+</body>
+</html>
