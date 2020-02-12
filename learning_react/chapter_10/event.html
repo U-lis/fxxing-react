@@ -27,6 +27,12 @@
         }
     }
 
+    class ZeroButton extends React.Component {
+        render() {
+            return <button>0</button>
+        }
+    }
+
     class CounterParent extends React.Component {
         constructor(props) {
             super(props);
@@ -35,6 +41,7 @@
                 count: 0
             };
             this.increase = this.increase.bind(this);
+            this.setZero = this.setZero.bind(this);
         }
 
         increase(e) {
@@ -45,6 +52,10 @@
                 currCount += 1;
             }
             this.setState({count: currCount})
+        }
+
+        setZero(e) {
+            this.setState({count: 0});
         }
 
         render() {
@@ -71,6 +82,7 @@
                 <Counter display={this.state.count}/>
                 <button onClick={this.increase} style={buttonStyle}>+
                 </button>
+                <ZeroButton onClick={this.setZero}/>
                 <button onClick={(e) => {
                     this.setState({count: this.state.count - (e.shiftKey ? 10 : 1)})
                 }} style={buttonStyle}>-
