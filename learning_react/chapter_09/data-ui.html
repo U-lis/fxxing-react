@@ -12,6 +12,13 @@
 <script type="text/babel">
     const container = document.querySelector("#container");
 
+    function randomCircle() {
+        const colors = ["#123123", "#9FDA33", "#093BAA", "#87DD90", "#ABBA00", "#610810"];
+        const ran = Math.floor(Math.random() * colors.length);
+
+        return <Circle bgcolor={colors[ran]}></Circle>
+    }
+
     class Circle extends React.Component {
         render() {
             const circleStyle = {
@@ -32,7 +39,7 @@
 
     ReactDOM.render(
         <div>
-            <Circle bgcolor="#F9C240"></Circle>
+            {randomCircle()}
         </div>,
         container
     );
